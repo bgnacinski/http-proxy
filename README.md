@@ -15,3 +15,16 @@ Example:
 ```sh
 curl -x "http://127.0.0.1:1024" "jest.bieda.it"
 ```
+
+Real use:
+```sh
+$ curl -x "http://127.0.0.1:1024" "jest.bieda.it"
+
+<head>
+	<title>Bieda Ni</title>
+</head>
+<body>
+	<h3>Hello</h3>
+	Hello
+</body>
+```
