@@ -1,36 +1,35 @@
+import client as client_handler
+import threading
+import datetime
 import socket
 
-def handle_client(client):
-    data = client.recv(131072)
-    buffer = data
+def update_log(address):
+    now = datetime.datetime.now()
 
-    website_address = str(buffer).split()[3].split("\\")[0]
+    hour = now.hour
+    minute = now.minute
+    second = now.second
 
-    print(website_address)
+    year = now.year
+    month = now.month
+    day = now.day
 
-    websocket = socket.socket()
-    websocket.connect((website_address, 80))
-    websocket.send(buffer)
+    data_to_write = f"[{day}.{month}.{year} - {hour}:{minute}:{second}] {address}"
 
-    resp = websocket.recv(40000)
-
-    return resp
+    f = open("access.log", "a")
+    f.write(data_to_write)
+    f.close()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(("127.0.0.1", 1025))
 s.listen(1024)
-
-connections = 0
 
 print("Server hosted")
 
 while True:
     client, addr = s.accept()
 
-    print("Connection established with " + addr[0])
-    print(connections)
+    update_log(addr[0])
 
-    client.send(handle_client(client))
-
-    client.close()
-    print("Connection closed")
+    client_thread = threading.Thread(target=client_handler.handle, args=(client,))
+    client_thread.run()
