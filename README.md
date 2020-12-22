@@ -4,7 +4,7 @@ Now, it only supports HTTP protocol.
 
 Tested only on Firefox and cURL.
 
-# Use example with cURL
+## Use example with cURL
 
 Usage:
 ```sh
