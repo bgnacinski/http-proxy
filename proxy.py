@@ -32,4 +32,4 @@ while True:
     update_log(addr[0])
 
     client_thread = threading.Thread(target=client_handler.handle, args=(client,))
-    client_thread.run()
+    client_thread.start()
