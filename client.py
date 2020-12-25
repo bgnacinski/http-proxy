@@ -7,10 +7,20 @@ config = json.load(open("config.json"))
 REQUEST_BUFFER = config["request_buffer"]
 CHUNK_SIZE = config["chunk_size"]
 
+# getting blacklisted domains
+blacklist = json.load(open("blacklist.json"))
+
 def handle_http(client:socket.socket):
     http_request = client.recv(REQUEST_BUFFER) # default apache2 BufferSize
 
     website_address = get_domain_name(http_request)
+
+    if website_address in blacklist["malicious"] or website_address in blacklist["other"]:
+        website_address = "hole.cert.pl"
+
+    elif website_address in blacklist["ads"]:
+        client.close()
+        return
 
     #getting content of site
     websocket = socket.socket()
