@@ -29,7 +29,7 @@ config = json.load(open("config.json"))
 PUBLIC_ADDR = config["public_address"]
 PORT = config["port"]
 MAX_CONNECTIONS = config["max_connections"]
-LOG_FILE = config["log_dir"]
+LOG_FILE = config["log_file"]
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((PUBLIC_ADDR, PORT))
