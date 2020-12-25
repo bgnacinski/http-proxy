@@ -10,7 +10,7 @@ CHUNK_SIZE = config["chunk_size"]
 def handle_http(client:socket.socket):
     http_request = client.recv(REQUEST_BUFFER) # default apache2 BufferSize
 
-    website_address = str(http_request).split()[3].split("\\")[0]
+    website_address = get_domain_name(http_request)
 
     #getting content of site
     websocket = socket.socket()
