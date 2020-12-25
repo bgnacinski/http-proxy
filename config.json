@@ -1,0 +1,8 @@
+{
+    "public_address":"127.0.0.1",
+    "port":1024,
+    "max_connections":1024,
+    "log_file":"./access.log",
+    "request_buffer":131072,
+    "chunk_size":8192
+}
