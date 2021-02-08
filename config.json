@@ -1,6 +1,6 @@
 {
     "public_address":"127.0.0.1",
-    "port":1024,
+    "port":1080,
     "max_connections":1024,
     "log_file":"./access.log",
     "request_buffer":131072,
